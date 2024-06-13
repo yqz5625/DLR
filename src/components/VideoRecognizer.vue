@@ -155,8 +155,7 @@ const setting = {
   TargetROIDefOptions: [
     {
       BaseTargetROIDefName: "",
-      Location: {
-      },
+      Location: {},
       Name: "roi_default",
       PauseFlag: 0,
       TaskSettingNameArray: ["dlr_task_default"],
@@ -230,6 +229,16 @@ const init = async (): Promise<{
     // Create a `CameraEnhancer` instance for camera control and a `CameraView` instance for UI control.
     const cameraView = await CameraView.createInstance();
     const cameraEnhancer = await CameraEnhancer.createInstance(cameraView);
+
+    let scanRegion = {
+      x: 30,
+      y: 50,
+      width: 40,
+      height: 10,
+      isMeasuredInPercentage: true,
+    };
+    cameraEnhancer.setScanRegion(scanRegion);
+
     uiContainer.value!.append(cameraView.getUIElement()); // Get default UI and append it to DOM.
 
     // Create a `CaptureVisionRouter` instance and set `CameraEnhancer` instance as its image source.
