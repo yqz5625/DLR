@@ -147,7 +147,7 @@ const setting = {
       ],
       StartSection: "ST_REGION_PREDETECTION",
       StringLengthRange: [3, 10],
-      StringRegExPattern: "[0-9]{6}",
+      StringRegExPattern: "^\d{6}$",
       TerminateSetting: { Section: "ST_NULL", Stage: "IRUT_NULL" },
       TextLineSpecificationNameArray: ["tls_default"],
     },
@@ -196,8 +196,8 @@ const setting = {
         },
       ],
       Name: "tls_default",
-      StringLengthRange: [0, 11],
-      StringRegExPattern: "",
+      StringLengthRange: [5, 7],
+      StringRegExPattern: "[0-9]{6}",
     },
   ],
 };
@@ -225,6 +225,7 @@ const init = async (): Promise<{
         );
       }
     };
+
 
     // Create a `CameraEnhancer` instance for camera control and a `CameraView` instance for UI control.
     const cameraView = await CameraView.createInstance();
