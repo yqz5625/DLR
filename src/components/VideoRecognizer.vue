@@ -201,6 +201,8 @@ const setting = {
     },
   ],
 };
+
+const pVal = ref(0)
 const init = async (): Promise<{
   cameraView: CameraView;
   cameraEnhancer: CameraEnhancer;
@@ -257,7 +259,9 @@ const init = async (): Promise<{
       resultsContainer.value!.innerHTML = "";
       console.log(result);
       for (let item of result.textLineResultItems) {
-        resultsContainer.value!.innerHTML += `${item.text}<br><hr>`;
+        if (item.confidence > 70) {
+          resultsContainer.value!.innerHTML += `${item.text}<br><hr>`;
+        }
       }
     };
     router.addResultReceiver(resultReceiver);
